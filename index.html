@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ps">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>زما د اعلاناتو سایټ</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+        }
+        
+        .header {
+            background: #4a6fa5;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .ad-section {
+            margin: 30px 0;
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .ad-container {
+            min-height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+            border-radius: 8px;
+            margin: 15px 0;
+            border: 1px dashed #ccc;
+        }
+        
+        .ad-button {
+            background: #4a6fa5;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 0;
+            transition: all 0.3s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .ad-button:hover {
+            background: #3a5a80;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.15);
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background: #4a6fa5;
+            color: white;
+            margin-top: 30px;
+        }
+        
+        /* د موبایل لپاره رسپانسو ډیزاین */
+        @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+            }
+            
+            .ad-section {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>زما د اعلاناتو سایټ</h1>
+        <p>د اعلاناتو څخه د ګټې اخیستلو لپاره مهرباني وکړئ</p>
+    </div>
+    
+    <div class="container">
+        <!-- پورتنۍ اعلاناتو سکشن -->
+        <div class="ad-section">
+            <h2>پورتنۍ اعلانات</h2>
+            <div class="ad-container" id="top-ad"></div>
+        </div>
+        
+        <!-- منځنۍ محتوا -->
+        <div class="ad-section">
+            <h2>زموږ د خدماتو په اړه</h2>
+            <p>دلته کولی شئ د خپلو محصولاتو یا خدماتو په اړه معلومات وړاندې کړئ.</p>
+            <button class="ad-button" onclick="showExtraAd()">نور اعلانات وګورئ</button>
+            <div class="ad-container" id="extra-ad" style="display:none;"></div>
+        </div>
+        
+        <!-- کښتنۍ اعلاناتو سکشن -->
+        <div class="ad-section">
+            <h2>کښتنۍ اعلانات</h2>
+            <div class="ad-container" id="bottom-ad"></div>
+        </div>
+    </div>
+    
+    <div class="footer">
+        <p>ټول حقونه خوندي دي © 2023 زما د اعلاناتو سایټ</p>
+    </div>
+    
+    <script>
+        // د start.io سکریپټ چې په پیل کې پورته او کښتنۍ اعلانات ښکاره کوي
+        function loadStartIoScript() {
+            var script = document.createElement('script');
+            script.src = 'https://platform.start.io/v1/loader.js';
+            script.onload = function() {
+                // پورتنۍ اعلان
+                startio.go({
+                    affiliateId: '207290085',
+                    adContainerId: 'top-ad',
+                    adType: 'banner'
+                });
+                
+                // کښتنۍ اعلان
+                startio.go({
+                    affiliateId: '207290085',
+                    adContainerId: 'bottom-ad',
+                    adType: 'banner'
+                });
+            };
+            document.body.appendChild(script);
+        }
+        
+        // د اضافي اعلان لپاره فانکشن
+        function showExtraAd() {
+            var extraAd = document.getElementById('extra-ad');
+            if (extraAd.style.display === 'none') {
+                startio.go({
+                    affiliateId: '207290085',
+                    adContainerId: 'extra-ad',
+                    adType: 'video' // یا 'image' د عکس اعلانونو لپاره
+                });
+                extraAd.style.display = 'block';
+            }
+        }
+        
+        // په پیل کې د اعلاناتو لوډول
+        window.onload = loadStartIoScript;
+    </script>
+</body>
+</html> 
